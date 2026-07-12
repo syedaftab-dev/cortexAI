@@ -4,6 +4,8 @@ import proxy from "express-http-proxy";
 dotenv.config();
 import cors from "cors"
 import cookieParser from "cookie-parser";
+import { getCurrentUser } from "./controllers/user.controller";
+import protect from "./middleware/auth.middleware";
 
 const app = express();
 
@@ -13,10 +15,11 @@ app.use(cookieParser())
 
 // MIDDLWARE
 // gateway to redirect to auth service
-app.use("/auth",proxy(process.env.AUTH_SERVICE))
+app.use("/api/auth",proxy(process.env.AUTH_SERVICE))
 
 app.use(express.json())
 
+app.get("/api/me",protect,getCurrentUser)
 
 app.get("/",(req,res)=>{
     res.json({message:"Welcome to the Gateway"})

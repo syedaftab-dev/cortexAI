@@ -428,12 +428,104 @@
 			"typeName": "binding"
 		},
 		{
-			"x": 573.1860892155589,
-			"y": -1035.0672369374354,
-			"z": 1.2372091247405492,
+			"x": 467.03070775679856,
+			"y": -1093.5043058520216,
+			"z": 0.7519636742008514,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
+		},
+		{
+			"x": -379.2605308112801,
+			"y": 1618.509701875737,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:Dm4EACXcCWHg28KLQmv_D",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 1044.66259765625,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"attrs": {
+						"dir": "auto"
+					},
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Problem in Auth:"
+								}
+							]
+						},
+						{
+							"type": "orderedList",
+							"attrs": {
+								"dir": "auto",
+								"start": 1,
+								"type": null
+							},
+							"content": [
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "we login and thenn we refresh the page the data will be gone so we r making a "
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "middleware to check data stored used in redis while login"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "aOrEf",
+			"typeName": "shape"
 		},
 		{
 			"x": 196.93436154326764,
@@ -582,12 +674,12 @@
 			"typeName": "shape"
 		},
 		{
-			"editingShapeId": "shape:OfDILpyvLYXfzuZtNKaCD",
+			"editingShapeId": "shape:Dm4EACXcCWHg28KLQmv_D",
 			"croppingShapeId": null,
 			"selectedShapeIds": [
-				"shape:OfDILpyvLYXfzuZtNKaCD"
+				"shape:Dm4EACXcCWHg28KLQmv_D"
 			],
-			"hoveredShapeId": null,
+			"hoveredShapeId": "shape:Dm4EACXcCWHg28KLQmv_D",
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -1525,10 +1617,7 @@
 		{
 			"followingUserId": null,
 			"opacityForNextShape": 1,
-			"stylesForNextShape": {
-				"tldraw:geo": "rectangle",
-				"tldraw:color": "red"
-			},
+			"stylesForNextShape": {},
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
@@ -1542,8 +1631,8 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 1597.2000732421875,
-				"h": 769.2000122070312
+				"w": 519.6000366210938,
+				"h": 756
 			},
 			"insets": [
 				false,

@@ -10,7 +10,7 @@ import redis from "../../../shared/redis/redis.js";
 export const login = async (req,res)=>{
     try {
         const {token} = req.body;
-        const decoded = await getAuth(app).verifyIdToken(token); // verify token and get user data
+        const decoded = await getAuth(app).verifyIdToken(token); // verify token and get user data id ie firebase uid
 
         // check for uid to find user
         let user = await User.findOne({firebaseUid:decoded.uid});
