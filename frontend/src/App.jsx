@@ -3,12 +3,19 @@ import React from "react"
 import Home from "./pages/Home"
 import { useEffect } from "react"
 import getCurrentUser from "./features/getCurrentUser"
+import { useDispatch } from "react-redux"
+import { setUserdata } from "./redux/userSlice"
 
 function App() {
 
+  const dispatch = useDispatch();
+  
   useEffect(()=>{
     const getUser = async () =>{
-      await getCurrentUser()
+      const data = await getCurrentUser()
+      if(data){
+        dispatch(setUserdata(data));
+      }
     }
     getUser()
   },[])

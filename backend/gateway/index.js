@@ -4,8 +4,8 @@ import proxy from "express-http-proxy";
 dotenv.config();
 import cors from "cors"
 import cookieParser from "cookie-parser";
-import { getCurrentUser } from "./controllers/user.controller";
-import protect from "./middleware/auth.middleware";
+import { getCurrentUser } from "./controllers/user.controller.js";
+import protect from "./middleware/auth.middleware.js";
 
 const app = express();
 
