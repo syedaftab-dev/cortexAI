@@ -80,3 +80,6 @@ test-results/
 *.bak
 *.tmp
 *.temp
+
+# Secrets
+serviceAccountKey.json
