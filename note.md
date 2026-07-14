@@ -1,0 +1,84 @@
+# Proxy with Header for Chat Service Reference
+
+This document explains the architecture and purpose of using `proxyWithHeader` for forwarding requests to the Chat Service from the Gateway.
+
+---
+
+## 1. Architecture Overview
+In a microservices architecture:
+* The **API Gateway** acts as the single entry point for all clients. It handles centralized concerns such as CORS, Cookie parsing, and Session validation (interacting with Redis/database).
+* The **Chat Service** is a downstream service dedicated to handling messages, conversations, and real-time chat. It remains decoupled from session management and database details of authentication.
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Gateway (Port 5000)
+    participant Redis (Session Store)
+    participant Chat Service (Port 5001)
+
+    Client->>Gateway: Request to /api/chat/some-endpoint (with Session Cookie)
+    Note over Gateway: protect Middleware runs
+    Gateway->>Redis: Fetch session using Cookie ID
+    Redis-->>Gateway: Return Session Data (including User ID)
+    Note over Gateway: req.user = sessionData
+    Note over Gateway: proxyWithHeader intercepts
+    Gateway->>Chat Service: Forwarded Request (with Header x-user-id = userId)
+    Note over Chat Service: Read req.headers['x-user-id']
+    Chat Service-->>Gateway: Response (e.g., messages)
+    Gateway-->>Client: Forwarded Response
+```
+
+---
+
+## 2. Gateway Implementation
+
+### Route Configuration (`gateway/index.js`)
+To proxy requests securely, the route is protected first, and then proxied:
+```javascript
+import protect from "./middleware/auth.middleware.js";
+import proxyWithHeader from "./utils/proxyWithHeader.js";
+
+// Verify session first, then proxy with injected x-user-id header
+app.use("/api/chat", protect, proxyWithHeader(process.env.CHAT_SERVICE));
+```
+
+### The Custom Proxy Utility (`gateway/utils/proxyWithHeader.js`)
+Interceptors intercept the outgoing request to the microservice and inject the `x-user-id` header:
+```javascript
+import proxy from "express-http-proxy";
+
+const proxyWithHeader = (serviceUrl) => {
+    return proxy(serviceUrl, {
+        proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
+            if (srcReq.user) {
+                // Attach user context to headers for downstream service
+                proxyReqOpts.headers["x-user-id"] = srcReq.user.userId;
+            }
+            return proxyReqOpts;
+        }
+    });
+};
+
+export default proxyWithHeader;
+```
+
+---
+
+## 3. How Downstream Services (Chat Service) Use It
+The Chat Service does not need to connect to Redis or check cookies. It reads the authenticated user's ID directly from the request headers:
+
+```javascript
+export const createConversation = async (req, res) => {
+    try {
+        const userId = req.headers["x-user-id"]; // Injected by gateway
+        
+        if (!userId) {
+            return res.status(401).json({ message: "User context missing" });
+        }
+
+        // Logic to create conversation using userId...
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+```

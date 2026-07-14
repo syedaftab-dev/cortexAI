@@ -6,6 +6,7 @@ import cors from "cors"
 import cookieParser from "cookie-parser";
 import { getCurrentUser } from "./controllers/user.controller.js";
 import protect from "./middleware/auth.middleware.js";
+import proxyWithHeader from "./utils/proxyWithHeader.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cookieParser())
 // MIDDLWARE
 // gateway to redirect to auth service
 app.use("/api/auth",proxy(process.env.AUTH_SERVICE))
+app.use("/api/chat",protect,proxyWithHeader(process.env.CHAT_SERVICE))
 
 app.use(express.json())
 
