@@ -12,5 +12,10 @@
   "type": "module",
   "dependencies": {
     "ioredis": "^5.11.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/mongoose": "^5.11.96",
+    "@types/node": "^26.1.1"
   }
 }

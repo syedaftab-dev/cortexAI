@@ -22,7 +22,7 @@ export const getConversations = async (req,res) => {
     try {
         const userId = req.headers["x-user-id"];
         
-        const conversations = await conversation.find({
+        const conversations = await Conversation.find({
             userId: userId
         }).sort({
             updatedAt: -1
