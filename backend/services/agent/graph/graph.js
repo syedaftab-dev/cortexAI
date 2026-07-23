@@ -5,13 +5,14 @@ import { chatAgent } from "../agents/chat.agent.js";
 import {searchAgent} from "../agents/search.agent.js";
 import {pdfAgent} from "../agents/pdf.agent.js";
 import {visionAgent} from "../agents/vision.agent.js";
-import {pptAgent} from "../agents/ppt.agent.js";
+import {codingAgent} from "../agents/coding.agent.js";
+import { pptAgent } from "../agents/ppt.agent.js";
 
 // 1. initialize the graph with state
 const workflow = new StateGraph(agentState);
 
 // 2. add nodes
-workflow.addNode('router',router)
+workflow.addNode('router',router)   
 workflow.addNode('chat',chatAgent)
 workflow.addNode('search',searchAgent)
 workflow.addNode('coding',codingAgent)

@@ -991,9 +991,9 @@
 			"typeName": "binding"
 		},
 		{
-			"x": -1966.7323577879704,
-			"y": 404.41813126939877,
-			"z": 0.5659798216324151,
+			"x": 4892.66551197395,
+			"y": 869.9129497174983,
+			"z": 0.0969584686899304,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
@@ -1619,10 +1619,8 @@
 		{
 			"editingShapeId": null,
 			"croppingShapeId": null,
-			"selectedShapeIds": [
-				"shape:EKAKHTiLuBgisdS8PrjHF"
-			],
-			"hoveredShapeId": "shape:EKAKHTiLuBgisdS8PrjHF",
+			"selectedShapeIds": [],
+			"hoveredShapeId": null,
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -3939,9 +3937,7 @@
 		{
 			"followingUserId": null,
 			"opacityForNextShape": 1,
-			"stylesForNextShape": {
-				"tldraw:size": "xl"
-			},
+			"stylesForNextShape": {},
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
@@ -3955,8 +3951,8 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 1597.2000732421875,
-				"h": 769.2000122070312
+				"w": 1275.60009765625,
+				"h": 387.6000061035156
 			},
 			"insets": [
 				false,
